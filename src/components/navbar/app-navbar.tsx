@@ -13,9 +13,14 @@ export const AppNavbar = () => {
   return (
     <Nav>
       <FlexRow aligment="center">
-        <NavLogo src={'/vercel.svg'} />
+        <NavLogo src={'/assets/logo.svg'} />
         <NavLinks>
-          <StyledLink href="/">Home</StyledLink>
+          <StyledLink href="/">
+            <a>Home</a>
+          </StyledLink>
+          <StyledLink href="/characters">
+            <a>Characters</a>
+          </StyledLink>
         </NavLinks>
       </FlexRow>
 
