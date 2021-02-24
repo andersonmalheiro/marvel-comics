@@ -1,1 +1,2 @@
-export * from './example.model';
+export * from './comics.model';
+export * from './response.model';
