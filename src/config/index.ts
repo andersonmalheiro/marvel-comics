@@ -1,3 +1,3 @@
 export const config = {
-  API_URL: '<YOUR_API_URL_HERE>',
+  API_URL: 'http://gateway.marvel.com/v1/public/',
 };
