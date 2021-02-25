@@ -22,7 +22,6 @@ interface ButtonProps {
 
 export const FlexRow = styled.div<ContainerProps>`
   display: flex;
-  flex: 1;
   flex-direction: row;
   align-items: ${(props) => props.aligment};
   justify-content: ${(props) => props.justify};
@@ -36,7 +35,6 @@ export const FlexRow = styled.div<ContainerProps>`
 export const FlexColumn = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
-  flex: 1;
   align-items: ${(props) => props.aligment};
   justify-content: ${(props) => props.justify};
   padding: ${(props) => props.padding};
@@ -79,5 +77,23 @@ export const Button = styled.button<ButtonProps>`
     filter: brightness(1.05);
     transition: all 0.3s ease-in-out;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const GhostBtn = styled.button`
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    transition: all 0.3s ease-in-out;
   }
 `;
