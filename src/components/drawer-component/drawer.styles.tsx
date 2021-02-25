@@ -19,17 +19,5 @@ export const Container = styled.div`
   h1 {
     margin: 0;
     font-size: 18px;
-    margin-bottom: 10px;
   }
-`;
-
-export const ToggleDrawerBtn = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 5px 10px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid;
-  width: fit-content;
 `;
