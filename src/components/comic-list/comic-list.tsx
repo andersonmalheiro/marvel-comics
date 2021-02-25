@@ -2,16 +2,15 @@ import { Comic, ComicFilters, ComicService, httpClient } from 'api';
 import { DEFAULT_FILTERS, Filters } from 'components/filters';
 import { LoadingIndicator } from 'components/loading-indicator';
 import React, { useEffect, useState } from 'react';
-import { MdSearch, MdSync } from 'react-icons/md';
-import { FlexColumn, FlexRow } from 'styles/utils';
+import { MdSearch, MdSend } from 'react-icons/md';
+import { FlexColumn, FlexRow, GhostBtn } from 'styles/utils';
 import {
   ComicCardImage,
   ComicGrid,
   ComicCard,
   ComidCardInfo,
-  FilterButton,
 } from './comic-list.styles';
-import { Drawer } from 'components/drawer-component';
+import { Drawer, useDrawer } from 'components/drawer-component';
 
 export const ComicList = () => {
   const comicService: ComicService = new ComicService(httpClient);
@@ -19,6 +18,7 @@ export const ComicList = () => {
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
   const [selectedComics, setSelectedComics] = useState<Comic[]>([]);
+  const [drawerOpen, toggleDrawer] = useDrawer();
 
   const loadComics = async (filters: ComicFilters) => {
     setLoading(true);
@@ -65,9 +65,12 @@ export const ComicList = () => {
       <FlexColumn>
         <FlexRow gap="1em" aligment="center">
           <h1>Comics</h1>
-          <FilterButton onClick={toggleFilters}>
+          <GhostBtn onClick={toggleFilters}>
             <MdSearch size={20} />
-          </FilterButton>
+          </GhostBtn>
+          <GhostBtn onClick={toggleDrawer}>
+            <MdSend size={20} />
+          </GhostBtn>
         </FlexRow>
         {showFilters && <Filters onFilter={loadComics} />}
       </FlexColumn>
@@ -102,7 +105,11 @@ export const ComicList = () => {
         </ComicGrid>
       )}
 
-      <Drawer title={'Send email'}>
+      <Drawer
+        open={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        title={'Send email'}
+      >
         <ComicGrid>
           {selectedComics.map((comic) => (
             <ComicCard key={comic.id}>

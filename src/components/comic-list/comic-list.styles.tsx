@@ -1,15 +1,5 @@
 import styled from 'styled-components';
 
-export const FilterButton = styled.button`
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-`;
-
 export const ComicGrid = styled.ul`
   display: grid;
   padding: 0;
