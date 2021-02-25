@@ -58,7 +58,7 @@ const formats = [
 
 export const Filters = (props: FilterProps) => {
   const { onFilter } = props;
-  const [filters, setFilters] = useState<ComicFilters>();
+  const [filters, setFilters] = useState<ComicFilters>(DEFAULT_FILTERS);
 
   const handleChange = (event: { target: any }) => {
     const target = event.target;
@@ -74,12 +74,14 @@ export const Filters = (props: FilterProps) => {
   };
 
   const clear = () => {
+    console.log('clear')
     setFilters(DEFAULT_FILTERS);
     onFilter(DEFAULT_FILTERS);
   };
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
+    console.log(filters);
     onFilter(filters);
   };
 
@@ -136,6 +138,7 @@ export const Filters = (props: FilterProps) => {
             styling="default"
             id="clear"
             data-testid="clear"
+            type="button"
           >
             Clear
           </Button>
