@@ -11,6 +11,7 @@ import {
   ComidCardInfo,
 } from './comic-list.styles';
 import { Drawer, useDrawer } from 'components/drawer-component';
+import { ComicModal } from 'components/comic-modal';
 
 export const ComicList = () => {
   const comicService: ComicService = new ComicService(httpClient);
@@ -19,6 +20,8 @@ export const ComicList = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [selectedComics, setSelectedComics] = useState<Comic[]>([]);
   const [drawerOpen, toggleDrawer] = useDrawer();
+  const [selectedComic, setSelectedComic] = useState<Comic>(null);
+  const [showModal, setShowModal] = useState(false);
 
   const loadComics = async (filters: ComicFilters) => {
     setLoading(true);
@@ -60,6 +63,16 @@ export const ComicList = () => {
     }
   };
 
+  const openModal = (comic: Comic) => {
+    setSelectedComic(comic);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedComic(null);
+  };
+
   return (
     <FlexColumn>
       <FlexColumn>
@@ -81,7 +94,7 @@ export const ComicList = () => {
         <ComicGrid>
           {comics.map((comic) => (
             <ComicCard key={comic.id}>
-              <ComicCardImage>
+              <ComicCardImage onClick={() => openModal(comic)}>
                 <img
                   src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`}
                   alt="image"
@@ -136,6 +149,10 @@ export const ComicList = () => {
           ))}
         </ComicGrid>
       </Drawer>
+
+      {selectedComic && (
+        <ComicModal data={selectedComic} open={showModal} close={closeModal} />
+      )}
     </FlexColumn>
   );
 };
