@@ -1,6 +1,6 @@
 import { Button, FlexColumn, FlexRow } from 'styles/utils';
 import React, { useState } from 'react';
-import { Container, Input, Label } from './filters.styles';
+import { Container, Input, Label, Select } from './filters.styles';
 import { ComicFilters } from 'api';
 
 interface FilterProps {
@@ -10,6 +10,7 @@ interface FilterProps {
 export const DEFAULT_FILTERS: ComicFilters = {
   title: '',
   issueNumber: '',
+  format: '',
   limit: 30,
   orderBy: 'title',
 };
@@ -33,11 +34,46 @@ export const Filters = (props: FilterProps) => {
 
   const clear = () => {
     setFilters(DEFAULT_FILTERS);
-    onFilter(DEFAULT_FILTERS);
+    onFilter({});
   };
 
+  const formats = [
+    {
+      name: 'Comic',
+      value: 'comic',
+    },
+    {
+      name: 'Magazine',
+      value: 'magazine',
+    },
+    {
+      name: 'Trade paperback',
+      value: 'trade paperback',
+    },
+    {
+      name: 'Hardcover',
+      value: 'hardcover',
+    },
+    {
+      name: 'Digest',
+      value: 'digest',
+    },
+    {
+      name: 'Graphic novel',
+      value: 'graphic novel',
+    },
+    {
+      name: 'Digital comic',
+      value: 'digital comic',
+    },
+    {
+      name: 'Infinite comic',
+      value: 'infinite comic',
+    },
+  ];
+
   return (
-    <FlexColumn>
+    <FlexColumn margin="0 0 1em 0">
       <Container>
         <FlexColumn>
           <Label htmlFor="title">Title</Label>
@@ -62,6 +98,24 @@ export const Filters = (props: FilterProps) => {
             placeholder="Search by issue number..."
             onChange={handleFilterChange}
           />
+        </FlexColumn>
+        <FlexColumn>
+          <Label htmlFor="issueNumber">Issue</Label>
+          <Select
+            name="format"
+            id="format"
+            data-testid="format"
+            value={filters?.format}
+            placeholder="Search by issue number..."
+            onChange={handleFilterChange}
+          >
+            <option value="">Select a format...</option>
+            {formats.map((format) => (
+              <option key={format.value} value={format.value}>
+                {format.name}
+              </option>
+            ))}
+          </Select>
         </FlexColumn>
       </Container>
       <FlexRow aligment="center" justify="center" padding="1em" gap="1em">

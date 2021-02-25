@@ -44,10 +44,11 @@ export interface ComicFilters {
   title?: string;
   titleStartsWith?: string;
   startYear?: string;
-  issueNumber?: number | string;
+  issueNumber?: string;
   limit?: number;
   offset?: number;
   orderBy?: string;
+  format?: string;
 }
 
 interface URL {
