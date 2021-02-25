@@ -8,7 +8,8 @@ export const Nav = styled.div`
   height: 70px;
   justify-content: space-between;
   padding: 10px 2em;
-  background: #E23636;
+  background: #28282f;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 `;
 
 export const NavLogo = styled.img`
