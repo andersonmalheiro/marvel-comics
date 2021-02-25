@@ -11,12 +11,14 @@ import {
   ComidCardInfo,
   FilterButton,
 } from './comic-list.styles';
+import { Drawer } from 'components/drawer-component';
 
 export const ComicList = () => {
   const comicService: ComicService = new ComicService(httpClient);
   const [comics, setComics] = useState<Comic[]>([]);
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
+  const [selectedComics, setSelectedComics] = useState<Comic[]>([]);
 
   const loadComics = async (filters: ComicFilters) => {
     setLoading(true);
@@ -40,13 +42,31 @@ export const ComicList = () => {
     loadComics(DEFAULT_FILTERS);
   }, []);
 
+  const onSelect = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    comic: Comic
+  ) => {
+    const target = event.target;
+    const value = target.checked;
+
+    if (value) {
+      setSelectedComics((prev) => {
+        return [...prev, comic];
+      });
+    } else {
+      setSelectedComics((prev) => {
+        return prev.filter((com) => com.id !== comic.id);
+      });
+    }
+  };
+
   return (
     <FlexColumn>
       <FlexColumn>
         <FlexRow gap="1em" aligment="center">
           <h1>Comics</h1>
           <FilterButton onClick={toggleFilters}>
-            <MdSearch size={30} />
+            <MdSearch size={20} />
           </FilterButton>
         </FlexRow>
         {showFilters && <Filters onFilter={loadComics} />}
@@ -56,23 +76,59 @@ export const ComicList = () => {
         <LoadingIndicator />
       ) : (
         <ComicGrid>
-          {comics.map((comic, index) => (
-            <ComicCard>
-              <ComicCardImage key={index}>
+          {comics.map((comic) => (
+            <ComicCard key={comic.id}>
+              <ComicCardImage>
                 <img
                   src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`}
                   alt="image"
                 />
               </ComicCardImage>
               <ComidCardInfo>
+                <label htmlFor={String(comic.id)} className="select">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    id={String(comic.id)}
+                    onChange={(e) => onSelect(e, comic)}
+                  />
+                  Selecionar
+                </label>
                 <span>{comic.title}</span>
                 <span>#{comic.issueNumber}</span>
-                <input type="checkbox" />
               </ComidCardInfo>
             </ComicCard>
           ))}
         </ComicGrid>
       )}
+
+      <Drawer title={'Send email'}>
+        <ComicGrid>
+          {selectedComics.map((comic) => (
+            <ComicCard key={comic.id}>
+              <ComicCardImage>
+                <img
+                  src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`}
+                  alt="image"
+                />
+              </ComicCardImage>
+              <ComidCardInfo>
+                <label htmlFor={String(comic.id)} className="select">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    id={String(comic.id)}
+                    onChange={(e) => onSelect(e, comic)}
+                  />
+                  Selecionar
+                </label>
+                <span>{comic.title}</span>
+                <span>#{comic.issueNumber}</span>
+              </ComidCardInfo>
+            </ComicCard>
+          ))}
+        </ComicGrid>
+      </Drawer>
     </FlexColumn>
   );
 };

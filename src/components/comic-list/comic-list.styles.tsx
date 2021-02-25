@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const FilterButton = styled.button`
-  height: 25px;
-  width: 25px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -32,8 +30,6 @@ export const ComicCard = styled.li`
   flex-direction: column;
   background: #fff;
   border-radius: 8px 40px 8px 8px;
-  max-height: 324px;
-  max-width: 216px;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
 
@@ -57,4 +53,14 @@ export const ComidCardInfo = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 12px;
+
+  .select {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    input {
+      margin-left: 5px;
+    }
+  }
 `;
