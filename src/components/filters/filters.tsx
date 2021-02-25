@@ -74,7 +74,7 @@ export const Filters = (props: FilterProps) => {
   };
 
   const clear = () => {
-    console.log('clear')
+    console.log('clear');
     setFilters(DEFAULT_FILTERS);
     onFilter(DEFAULT_FILTERS);
   };

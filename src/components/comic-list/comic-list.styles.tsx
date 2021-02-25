@@ -5,7 +5,7 @@ export const ComicGrid = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   grid-template-rows: auto;
   gap: 1em;
   transition: all 0.3s ease-in-out;
