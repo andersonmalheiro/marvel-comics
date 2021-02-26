@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { AppNavbar } from 'components';
 import { StyledMain } from 'styles/index.styles';
-import { ComicList } from 'components';
+import { ComicListWrapper } from 'components/comic-list-wrapper';
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <AppNavbar />
 
       <StyledMain>
-        <ComicList />
+        <ComicListWrapper />
       </StyledMain>
     </React.Fragment>
   );
