@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyledForm } from './form.styles';
 
-interface FormProps {
-  onSubmit: (...args: any[]) => void;
-}
-
-export const Form: React.FC<FormProps> = (props) => {
-  const { onSubmit, children } = props;
-  return <StyledForm onSubmit={onSubmit}>{children}</StyledForm>;
-};
+export const Form = React.forwardRef((props: any, ref) => {
+  const { onSubmit, children, ...rest } = props;
+  return (
+    <StyledForm {...rest} ref={ref} onSubmit={onSubmit}>
+      {children}
+    </StyledForm>
+  );
+});
