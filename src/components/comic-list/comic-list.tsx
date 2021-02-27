@@ -6,6 +6,7 @@ import {
   ComicGrid,
   ComidCardInfo,
 } from './comic-list.styles';
+import { EmptyIndicator } from 'components/empty-indicator';
 
 interface ComicListProps {
   data: Comic[];
@@ -13,10 +14,18 @@ interface ComicListProps {
   onSelectComic?: (...args: any[]) => void;
   onScroll?: (...args: any[]) => void;
   showSelect: boolean;
+  emptyMessage?: string;
 }
 
 export const ComicList = (props: ComicListProps) => {
-  const { data, onClickComic, onSelectComic, onScroll, showSelect } = props;
+  const {
+    data,
+    emptyMessage,
+    onClickComic,
+    onSelectComic,
+    onScroll,
+    showSelect,
+  } = props;
   const ref = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -26,33 +35,39 @@ export const ComicList = (props: ComicListProps) => {
   }, []);
 
   return (
-    <ComicGrid ref={ref}>
-      {data &&
-        data.map((comic) => (
-          <ComicCard key={comic.id}>
-            <ComicCardImage onClick={() => onClickComic(comic)}>
-              <img
-                src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`}
-                alt="image"
-              />
-            </ComicCardImage>
-            <ComidCardInfo>
-              {showSelect && (
-                <label htmlFor={String(comic.id)} className="select">
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    id={String(comic.id)}
-                    onChange={(e) => onSelectComic(e, comic)}
+    <React.Fragment>
+      {data && data.length ? (
+        <ComicGrid ref={ref}>
+          {data &&
+            data.map((comic) => (
+              <ComicCard key={comic.id}>
+                <ComicCardImage onClick={() => onClickComic(comic)}>
+                  <img
+                    src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`}
+                    alt="image"
                   />
-                  Selecionar
-                </label>
-              )}
-              <span>{comic.title}</span>
-              <span>#{comic.issueNumber}</span>
-            </ComidCardInfo>
-          </ComicCard>
-        ))}
-    </ComicGrid>
+                </ComicCardImage>
+                <ComidCardInfo>
+                  {showSelect && (
+                    <label htmlFor={String(comic.id)} className="select">
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        id={String(comic.id)}
+                        onChange={(e) => onSelectComic(e, comic)}
+                      />
+                      Selecionar
+                    </label>
+                  )}
+                  <span>{comic.title}</span>
+                  <span>#{comic.issueNumber}</span>
+                </ComidCardInfo>
+              </ComicCard>
+            ))}
+        </ComicGrid>
+      ) : (
+        <EmptyIndicator message={emptyMessage} />
+      )}
+    </React.Fragment>
   );
 };

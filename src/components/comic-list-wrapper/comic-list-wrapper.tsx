@@ -127,9 +127,11 @@ export const ComicListWrapper = () => {
           <h1>Comics</h1>
           <GhostBtn onClick={toggleFilters}>
             <MdSearch size={20} />
+            <span className="text">Toggle filters</span>
           </GhostBtn>
           <GhostBtn onClick={toggleDrawer}>
             <MdSend size={20} />
+            <span className="text">Send comics</span>
           </GhostBtn>
         </FlexRow>
         {showFilters && <Filters onFilter={loadComics} />}
@@ -208,7 +210,11 @@ export const ComicListWrapper = () => {
               onChange={handleChange}
               required={true}
             />
-            <ComicList data={selectedComics} showSelect={false} />
+            <ComicList
+              emptyMessage={'No comics selected...'}
+              data={selectedComics}
+              showSelect={false}
+            />
             <FlexRow aligment="center" justify="center" padding="1em" gap="1em">
               <Button
                 type="submit"
