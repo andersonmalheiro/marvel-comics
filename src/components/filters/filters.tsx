@@ -1,14 +1,10 @@
 import { Button, FlexColumn, FlexRow } from 'styles/utils';
 import React, { FormEvent, useState } from 'react';
-import {
-  FieldGrid,
-  FieldSet,
-  Form,
-  Input,
-  Label,
-  Select,
-} from './filters.styles';
+import { Input, Select } from '../inputs';
 import { ComicFilters } from 'api';
+import { FieldGrid } from './filters.styles';
+import { Form } from 'components/form';
+import { useForm } from 'hooks/useForm';
 
 interface FilterProps {
   onFilter: (...args: any[]) => void;
@@ -58,80 +54,58 @@ const formats = [
 
 export const Filters = (props: FilterProps) => {
   const { onFilter } = props;
-  const [filters, setFilters] = useState<ComicFilters>(DEFAULT_FILTERS);
-
-  const handleChange = (event: { target: any }) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name || target.id;
-
-    setFilters((prevState: ComicFilters) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
 
   const clear = () => {
-    console.log('clear');
-    setFilters(DEFAULT_FILTERS);
+    setValues(DEFAULT_FILTERS);
     onFilter(DEFAULT_FILTERS);
   };
 
-  const onSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(filters);
-    onFilter(filters);
+  const onSubmit = () => {
+    onFilter(values);
   };
+
+  const { handleChange, handleSubmit, values, setValues } = useForm(onSubmit);
 
   return (
     <FlexColumn margin="0 0 1em 0">
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={handleSubmit}>
         <FieldGrid>
-          <FieldSet>
-            <Label htmlFor="title">Title</Label>
-            <Input
-              name="title"
-              id="title"
-              data-testid="title"
-              value={filters?.title || ''}
-              placeholder="Search by title..."
-              onChange={handleChange}
-            />
-          </FieldSet>
-          <FieldSet>
-            <Label htmlFor="issueNumber">Issue</Label>
-            <Input
-              type="number"
-              min={0}
-              name="issueNumber"
-              id="issueNumber"
-              data-testid="issueNumber"
-              value={filters?.issueNumber || ''}
-              placeholder="Search by issue number..."
-              onChange={handleChange}
-            />
-          </FieldSet>
-          <FieldSet>
-            <Label htmlFor="issueNumber">Issue</Label>
-            <Select
-              name="format"
-              id="format"
-              data-testid="format"
-              value={filters?.format || ''}
-              placeholder="Search by issue number..."
-              onChange={handleChange}
-            >
-              <option value="">Select a format...</option>
-              {formats.map((format) => (
-                <option key={format.value} value={format.value}>
-                  {format.name}
-                </option>
-              ))}
-            </Select>
-          </FieldSet>
+          <Input
+            label={'Name'}
+            type={'text'}
+            name="title"
+            id="title"
+            data-testid="title"
+            value={values?.title || ''}
+            placeholder="Search by title..."
+            onChange={handleChange}
+          />
+          <Input
+            label={'Issue number'}
+            type="number"
+            min={0}
+            name="issueNumber"
+            id="issueNumber"
+            data-testid="issueNumber"
+            value={values?.issueNumber || ''}
+            placeholder="Search by issue number..."
+            onChange={handleChange}
+          />
+
+          <Select
+            label={'Format'}
+            name="format"
+            id="format"
+            data-testid="format"
+            value={values?.format || ''}
+            placeholder="Select a format..."
+            onChange={handleChange}
+            options={formats}
+            labelKey={'name'}
+            valueKey={'value'}
+          />
         </FieldGrid>
+
         <FlexRow aligment="center" justify="center" padding="1em" gap="1em">
           <Button
             onClick={clear}
