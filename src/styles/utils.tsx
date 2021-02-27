@@ -89,17 +89,29 @@ export const Button = styled.button<ButtonProps>`
 export const GhostBtn = styled.button`
   border: none;
   background: transparent;
-  border-radius: 50%;
+  border-radius: 30px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 5px 10px;
   transition: all 0.3s ease-in-out;
+
+  .text {
+    display: none;
+    opacity: 0;
+    margin-left: 5px;
+  }
 
   &:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     transform: translateY(-3px);
     transition: all 0.3s ease-in-out;
+    border: 1px solid #555;
+
+    .text {
+      display: block;
+      opacity: 1;
+    }
   }
 `;
