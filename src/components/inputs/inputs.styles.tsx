@@ -19,6 +19,10 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: #999;
   }
+
+  &:invalid {
+    border: 1px solid red;
+  }
 `;
 
 export const StyledSelect = styled.select`

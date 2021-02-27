@@ -78,6 +78,12 @@ export const Button = styled.button<ButtonProps>`
     transition: all 0.3s ease-in-out;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    filter: grayscale();
+    opacity: 0.7;
+  }
 `;
 
 export const GhostBtn = styled.button`
