@@ -1,5 +1,5 @@
 import { Button, FlexColumn, FlexRow } from 'styles/utils';
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
 import { Input, Select } from '../inputs';
 import { ComicFilters } from 'api';
 import { FieldGrid } from './filters.styles';
