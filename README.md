@@ -9,6 +9,7 @@ Projeto criado utilizando:
 - Next JS;
 - Styled components;
 - Google Typescript styleguide | Lint;
+- MailTrap;
 - Testes com Jest e Cypress;
 - Deploy na Vercel;
 - Docker.
@@ -24,6 +25,25 @@ npm install
 yarn
 ```
 
+Antes de executar o projeto, crie na raiz dele um arquivo `.env.local` e adicione as seguintes variáveis de ambiente:
+
+```
+## Chaves da API da Marvel
+NEXT_PUBLIC_API_PUBLIC_KEY=<sua chave pública>
+NEXT_PUBLIC_API_SECRET_KEY=<sua chave privada>
+
+## Configurações do serviço de e-mail
+## Necessário ter conta to serviço MailTrap
+NEXT_PUBLIC_MAIL_TRAP_USER=<seu usuário>
+NEXT_PUBLIC_MAIL_TRAP_PASS=<sua senha>'
+NEXT_PUBLIC_MAIL_TRAP_HOST='smtp.mailtrap.io'
+NEXT_PUBLIC_MAIL_TRAP_PORT=2525
+
+```
+
+Para o envio de e-mail foi utilizado o serviço de testes [MailTrap](https://mailtrap.io/). Então para testar localmente será necessário criar uma conta nele e obter as credenciais necessárias para preencher o arquivo `.env.local`
+
+---
 Para executar o projeto em modo de desenvolvimento, execute o seguinte comando:
 
 ```bash
