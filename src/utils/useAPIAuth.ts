@@ -1,5 +1,4 @@
 import md5 from 'md5';
-import { config } from 'config';
 
 export const useAPIAuth = () => {
   const ts = Date.now().toString();

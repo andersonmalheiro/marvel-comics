@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import Enzyme, { mount, shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import { ComicList } from '../components/comic-list';
 import { render } from '@testing-library/react';
 

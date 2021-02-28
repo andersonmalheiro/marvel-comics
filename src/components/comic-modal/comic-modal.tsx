@@ -6,7 +6,6 @@ import {
   Avatar,
   InfoRow,
   CloseButton,
-  Grid,
 } from './comic-modal.styles';
 
 interface AppModalProps {
