@@ -13,7 +13,6 @@ interface FilterProps {
 export const DEFAULT_FILTERS: ComicFilters = {
   title: '',
   issueNumber: '',
-  limit: 30,
   orderBy: 'title',
 };
 

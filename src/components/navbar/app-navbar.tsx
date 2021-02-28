@@ -18,9 +18,6 @@ export const AppNavbar = () => {
           <StyledLink href="/">
             <a>Home</a>
           </StyledLink>
-          <StyledLink href="/characters">
-            <a>Characters</a>
-          </StyledLink>
         </NavLinks>
       </FlexRow>
 
