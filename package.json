@@ -14,9 +14,6 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "posttest": "gts lint",
     "cypress:open": "cypress open"
   },
   "dependencies": {
