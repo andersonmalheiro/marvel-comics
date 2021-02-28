@@ -1,18 +1,19 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { Comic, ComicFilters, ComicService, httpClient } from 'api';
-import { ComicList } from 'components/comic-list';
-import { ComicModal } from 'components/comic-modal';
-import { Drawer, useDrawer } from 'components/drawer-component';
-import { DEFAULT_FILTERS, Filters } from 'components/filters';
-import { LoadingIndicator } from 'components/loading-indicator';
-import { MdSearch, MdSend, MdSync } from 'react-icons/md';
-import { Button, FlexColumn, FlexRow, GhostBtn } from 'styles/utils';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { MailMessage } from 'pages/api/providers/mailtrap.provider';
-import { template } from './email-template';
-import { useForm } from 'hooks/useForm';
 import { Form } from 'components/form';
 import { Input } from 'components/inputs';
+import { useForm } from 'hooks/useForm';
+import { template } from './email-template';
+import { ComicList } from 'components/comic-list';
+import { ComicModal } from 'components/comic-modal';
+import { MdSearch, MdSend } from 'react-icons/md';
+import { DEFAULT_FILTERS, Filters } from 'components/filters';
+import { Drawer, useDrawer } from 'components/drawer-component';
+import { LoadingIndicator } from 'components/loading-indicator';
+import { Comic, ComicFilters, ComicService, httpClient } from 'api';
+import { Button, FlexColumn, FlexRow, GhostBtn } from 'styles/utils';
+import { MailMessage } from 'pages/api/providers/mailtrap.provider';
+import { toast } from 'react-toastify';
 
 export const ComicListWrapper = () => {
   const comicService: ComicService = new ComicService(httpClient);
@@ -67,11 +68,19 @@ export const ComicListWrapper = () => {
     setSending(true);
     try {
       await axios.post('api/mail', mail);
+      toast('E-mail sent.', {
+        type: 'success',
+        position: 'top-right',
+      });
       setSending(false);
       setSelectedComics([]);
       setValues({});
     } catch (error) {
       console.error(error);
+      toast('Oops... Something went wrong', {
+        type: 'error',
+        position: 'top-right',
+      });
       setSending(false);
     }
   };
@@ -84,6 +93,7 @@ export const ComicListWrapper = () => {
   ) => {
     const target = event.target;
     const value = target.checked;
+    comic.selected = !comic.selected;
 
     if (value) {
       setSelectedComics((prev) => {

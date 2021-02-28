@@ -39,4 +39,13 @@ export const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover {
     background: #888;
   }
+
+  .Toastify__toast {
+    border-radius: 8px !important;
+    padding: 1em !important;
+  }
+
+  .Toastify__toast--error {
+    background: #ed3e3e !important;
+  }
 `;

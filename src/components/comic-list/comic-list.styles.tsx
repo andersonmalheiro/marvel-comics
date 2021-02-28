@@ -48,9 +48,14 @@ export const ComidCardInfo = styled.div`
     display: flex;
     align-items: center;
     font-weight: bold;
+    margin-bottom: 10px;
 
     input {
-      margin-left: 5px;
+      margin: 0;
+      margin-right: 5px;
+      padding: 0;
+      height: 15px;
+      width: 15px;
     }
   }
 `;

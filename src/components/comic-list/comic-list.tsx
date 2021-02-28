@@ -54,9 +54,10 @@ export const ComicList = (props: ComicListProps) => {
                         type="checkbox"
                         className="checkbox"
                         id={String(comic.id)}
+                        checked={comic?.selected || false}
                         onChange={(e) => onSelectComic(e, comic)}
                       />
-                      Selecionar
+                      <span>Selecionar</span>
                     </label>
                   )}
                   <span>{comic.title}</span>

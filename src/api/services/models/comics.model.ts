@@ -38,6 +38,7 @@ export interface Comic {
   characters: Resource;
   stories: Resource;
   events: Resource;
+  selected?: boolean;
 }
 
 export interface ComicFilters {
