@@ -23,7 +23,7 @@ export interface Comic {
   dates: [
     {
       type: string;
-      string: string;
+      date: string;
     }
   ];
   prices: [

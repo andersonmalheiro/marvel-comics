@@ -18,6 +18,8 @@ export class ComicService {
       ts,
       hash,
       ...filters,
+      offset: 0,
+      limit: 20,
     };
 
     try {
