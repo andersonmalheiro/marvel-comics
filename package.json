@@ -16,13 +16,15 @@
     "fix": "gts fix",
     "prepare": "tsc",
     "pretest": "tsc",
-    "posttest": "gts lint"
+    "posttest": "gts lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@babel/core": "^7.13.1",
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "enzyme": "^3.11.0",
     "md5": "^2.3.0",
     "next": "10.0.7",
     "nodemailer": "^6.5.0",
@@ -40,6 +42,7 @@
     "@testing-library/dom": "^7.29.6",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
+    "@types/enzyme": "^3.10.8",
     "@types/md5": "^2.3.0",
     "@types/node": "^14.14.28",
     "@types/nodemailer": "^6.4.0",
@@ -47,8 +50,10 @@
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.16",
     "@types/styled-components": "^5.1.7",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "babel-jest": "^26.6.3",
     "babel-plugin-styled-components": "^1.12.0",
+    "cypress": "^6.5.0",
     "gts": "^3.1.0",
     "jest": "^26.6.3",
     "react-is": "^17.0.1",
@@ -65,6 +70,17 @@
       "node_modules",
       "bower_components",
       "src"
+    ],
+    "roots": [
+      "<rootDir>"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/.next/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/cypress/"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.ts"
     ]
   }
 }

@@ -1,1 +1,7 @@
 build/
+cypress/
+**/node_modules
+**/build
+**/dist
+**/out
+**/cypress

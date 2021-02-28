@@ -67,7 +67,7 @@ export const Filters = (props: FilterProps) => {
 
   return (
     <FlexColumn margin="0 0 1em 0">
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} id="filters_form">
         <FieldGrid>
           <Input
             label={'Name'}

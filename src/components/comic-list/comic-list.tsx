@@ -41,7 +41,10 @@ export const ComicList = (props: ComicListProps) => {
           {data &&
             data.map((comic) => (
               <ComicCard key={comic.id}>
-                <ComicCardImage onClick={() => onClickComic(comic)}>
+                <ComicCardImage
+                  onClick={() => onClickComic(comic)}
+                  id={String(comic.id)}
+                >
                   <img
                     src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`}
                     alt="image"

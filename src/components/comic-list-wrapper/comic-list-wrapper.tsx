@@ -135,11 +135,11 @@ export const ComicListWrapper = () => {
       <FlexColumn>
         <FlexRow gap="1em" aligment="center">
           <h1>Comics</h1>
-          <GhostBtn onClick={toggleFilters}>
+          <GhostBtn data-testid="toggle_filters" onClick={toggleFilters}>
             <MdSearch size={20} />
             <span className="text">Toggle filters</span>
           </GhostBtn>
-          <GhostBtn onClick={toggleDrawer}>
+          <GhostBtn data-testid="toggle_drawer" onClick={toggleDrawer}>
             <MdSend size={20} />
             <span className="text">Send comics</span>
           </GhostBtn>
@@ -229,7 +229,7 @@ export const ComicListWrapper = () => {
               <Button
                 type="submit"
                 styling="primary"
-                data-testid="submit"
+                data-testid="submit_email"
                 id="submit"
                 disabled={sending || !disabledSend}
               >
